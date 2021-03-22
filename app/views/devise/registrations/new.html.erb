@@ -21,7 +21,7 @@
   <div>
     <h5> If you are worker, please choose what kind of service yot can provide </h5>
     <%= f.label :worker_type %>
-    <%= f.select :worker_type, User.worker_types, {include_blank: true}, class: "form-control  form-control-sm" %>
+    <%= f.select :worker_type, Worker.worker_types, {include_blank: true}, class: "form-control  form-control-sm" %>
   </div>
   <br>
   <br>
