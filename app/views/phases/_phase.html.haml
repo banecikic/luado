@@ -1,0 +1,38 @@
+.card
+  .card-header
+    = link_to phase.phase_title, phase
+  .card-body
+    = phase.content
+  .card-footer
+    .text-center
+      = number_to_currency(phase.price)
+  .card-footer
+    = phase.phase_type
+  .card-footer
+    Start time
+    = phase.start_time
+  .card-footer
+    End phase
+    = phase.end_time
+  .card-footer
+    = link_to 'Edit', edit_phase_path(phase), class: 'btn btn-sm btn-warning'
+    = link_to 'Destroy', phase, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+  .card-footer
+    -if phase.worker_name.present?
+      %p Worker choosed!
+    -else
+      = link_to 'Add worker', choose_worker_path(phase), class: 'btn btn-sm btn-warning'
+  - if phase.price > 0
+    .card-footer
+      .fa.fa-lock
+        = form_tag phase do
+          %script.stripe-button{"data-amount" => "#{(phase.price * 100).to_i}",
+                                  "data-description" => "#{phase.phase_type} (#{number_to_currency phase.price})",
+                                  "data-email" => "#{current_user.email}",
+                                  "data-key" => "pk_test_51IQHP8Gzoqhblu6l8RZOJVHSHtTeANBmIHdP2CjgefcorLh9LdOdTlyitRj23oED992jc1SBSKhlBTQ3gS3hGEzu00suT6ZQ2w",
+                                  "data-locale" => "auto",
+                                  :src => "https://checkout.stripe.com/checkout.js"}
+  - else
+    .card-footer
+      = form_tag phase do
+        = submit_tag "Phase payed", class: 'btn btn-lg btn-success disabled'

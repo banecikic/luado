@@ -1,0 +1,20 @@
+= link_to 'Projects', projects_path
+\/
+= link_to @project.title, project_path(@project)
+%p
+.row
+  .col-lg-6
+    = render 'projects/project', project: @project
+
+    = link_to "Add Workers", new_worker_path, class: 'btn btn-sm btn-info'
+  .col-lg-6
+    = link_to 'Add phase', new_phase_path(project_id: @project.id), class: 'btn btn-sm btn-primary'
+    %p
+    - @phases.each do |phase|
+      = render 'phases/phase', phase: phase
+      %p
+
+%hr
+= link_to 'Edit', edit_project_path(@project), class: 'btn btn-sm btn-primary'
+\|
+= link_to 'Back', projects_path, class: 'btn btn-sm btn-info'

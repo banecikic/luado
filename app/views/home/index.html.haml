@@ -1,6 +1,19 @@
-%h1 Apartment renew
-%p Create new project
-.fa.fa-flag
-= link_to root_path, class: 'btn btn-success' do
-  .fa.fa-flag
-  Homepage
+.jumbotron
+  .display-4
+    What do you want to do with your place?
+
+  .p-4
+
+.card-group
+  .card.card-body
+    %h1
+      .fa.fa-work
+    = Project.count
+    projects
+
+%hr
+%h2
+  Projects
+.card-columns
+  - @projects.each do |project|
+    = render 'projects/project', project: project 

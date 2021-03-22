@@ -1,0 +1,32 @@
+%p#notice= notice
+
+%h1
+  %b Phase title:
+  = @phase.phase_title
+%p
+  %b Content:
+  = @phase.content
+%p
+  %b Project:
+  = @phase.project
+
+%p
+  %b Phase type:
+  = @phase.phase_type
+
+%p
+  %b End time:
+  = @phase.end_time
+
+%p
+  %b Price:
+  = number_to_currency(@phase.price)
+
+- if @phase.worker_name.present?
+  %b Worker ID:
+  = @phase.worker_name
+%p
+
+= link_to 'Edit', edit_phase_path(@phase), class: 'btn btn-sm btn-primary'
+
+= link_to 'Back', project_path(@phase.project), class: 'btn btn-sm btn-primary'

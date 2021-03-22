@@ -1,0 +1,28 @@
+%h1 Listing phases
+
+%table.table
+  %thead
+    %tr
+      %th Phase title
+      %th Content
+      %th Project
+      %th Price
+      %th
+      %th
+      %th
+
+  %tbody
+    - @phases.each do |phase|
+      %tr
+        %td= phase.phase_title
+        %td= phase.content
+        %td= phase.project
+        %td= phase.price
+        %td= link_to 'Show', phase
+        %td= link_to 'Edit', edit_phase_path(phase)
+        %td= link_to 'Destroy', phase, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Phase', new_phase_path, class: 'btn btn-sm btn-primary'
+= link_to 'Back', projects_path, class: 'btn btn-sm btn-info'

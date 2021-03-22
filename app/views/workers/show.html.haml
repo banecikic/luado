@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @worker.name
+%p
+  %b Service:
+  = @worker.service
+%p
+  %b Price (per hour):
+  = @worker.price
+
+= link_to 'Edit', edit_worker_path(@worker)
+\|
+= link_to 'Back', workers_path

@@ -1,0 +1,27 @@
+%h1 Listing workers
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Service
+      %th Price
+      %th Work Type
+      %th
+      %th
+      %th
+
+  %tbody
+    - @workers.each do |worker|
+      %tr
+        %td= worker.name
+        %td= worker.service
+        %td= worker.price
+        %td= worker.worker_type
+        %td= link_to 'Show', worker
+        %td= link_to 'Edit', edit_worker_path(worker)
+        %td= link_to 'Destroy', worker, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Worker', new_worker_path

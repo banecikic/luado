@@ -1,0 +1,9 @@
+%h1 All Projects
+
+.card-columns
+  - @projects.each do |project|
+    = render 'projects/project', project: project
+
+%br
+
+= link_to 'New Project', new_project_path, class: 'btn btn-sm btn-info'

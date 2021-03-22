@@ -1,0 +1,24 @@
+.card
+  .card-header
+    .fa.fa-book
+    = link_to project.title, project_path(project)
+  .card-body
+    = project.description
+  .card-footer
+    .far.fa-clock
+    = project.created_at.strftime('%d-%b-%Y')
+    .row
+    .fa.fa-user
+    = project.user
+  .card-footer
+    .text-center
+      Total price: 
+      = number_to_currency(project.total_price)
+  .card-footer
+    Number of phases in this project:
+    .fa.fa-book
+    = project.phases.count
+  .card-footer
+    = link_to 'Show', project, class: 'btn btn-sm btn-primary'
+    = link_to 'Edit', edit_project_path(project), class: 'btn btn-sm btn-warning'
+    = link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
