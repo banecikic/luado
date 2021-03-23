@@ -1,23 +1,27 @@
 %h1 Choose Worker
 - if @workers.any?
+  = simple_form_for (@phase) do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+    .form-inputs
+      = f.input :worker_name, as: :radio_buttons, collection: @workers
+
+    .form-actions
+      = f.button :submit, class: 'btn btn-info'
+  %p
+  %br
+  Workers overview:
+  %p
   - @workers.each do |worker|
-
-    = simple_form_for (@phase) do |f|
-      = f.error_notification
-      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-      .form-inputs
-        = f.input :worker_name, as: :radio_buttons, collection: @workers
-
-      .form-actions
-        = f.button :submit
-
     = link_to worker.name, worker_path(worker)
+    Working price (Per hour):
+    = number_to_currency(worker.price)
     %br
 - else
   %p There's no workers for this job available
 
-
+%hr
 
 = link_to 'Show', @phase
 \|
