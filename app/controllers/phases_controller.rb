@@ -82,11 +82,11 @@ class PhasesController < ApplicationController
   # PATCH/PUT /phases/1 or /phases/1.json
   def update
     if params[:phase][:worker_name].present?
-      @phase.update_column(:worker_name, params[:phase][:worker_name])
+      @worker = Worker.find_by(name: params[:phase][:worker_name])
+      @phase.update_column(:worker_name, @worker.name)
 
       hours_to_complete= (@phase.end_time.to_time - @phase.start_time.to_time)/ 1.hours
-      @worker = Worker.find(params[:phase][:worker_name])
-      
+
       worker_price = @worker.price.to_i * hours_to_complete
       @phase.update_column(:price, worker_price)
     end

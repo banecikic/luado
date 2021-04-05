@@ -5,10 +5,10 @@
     = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
     .form-inputs
-      = f.input :worker_name, as: :radio_buttons, collection: @workers
+      = f.collection_radio_buttons :worker_name, @workers, :name, :name,  item_wrapper_tag: :div
 
     .form-actions
-      = f.button :submit, class: 'btn btn-info'
+      = f.button :submit, "Choose worker", class: 'btn btn-info'
   %p
   %br
   Workers overview:

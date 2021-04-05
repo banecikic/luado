@@ -19,7 +19,8 @@
     = link_to 'Destroy', phase, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
   .card-footer
     -if phase.worker_name.present?
-      %p Worker choosed!
+      Worker name: 
+      = link_to phase.worker_name, worker_path(phase.worker_name)
     -else
       = link_to 'Add worker', choose_worker_path(phase), class: 'btn btn-sm btn-warning'
   - if phase.price > 0
